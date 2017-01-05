@@ -25,7 +25,8 @@ var render = function(element, items) {
 		var li = document.createElement('li');
 		li.appendChild(a);
 
-		element.appendChild(li);
+		// reverse
+		element.prepend(li);
 	});
 }
 

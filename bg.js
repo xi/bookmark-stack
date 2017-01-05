@@ -8,7 +8,6 @@ chrome.contextMenus.create({
 				parentId: folder.id,
 				title: tab.title,
 				url: tab.url,
-				index: 0,
 				// tab.favIconUrl
 			}, function() {
 				chrome.tabs.remove(tab.id);
