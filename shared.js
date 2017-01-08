@@ -16,3 +16,28 @@ var ensureFolder = function(parentId, callback) {
 		}
 	});
 };
+
+var getBookmarks = function(callback) {
+	ensureFolder(FOLDER_ID, function(folder) {
+		chrome.bookmarks.getChildren(folder.id, callback);
+	});
+};
+
+var popBookmark = function(id, callback) {
+	chrome.bookmarks.get(id, function(items) {
+		chrome.bookmarks.remove(id, function() {
+			callback(items[0]);
+		});
+	});
+};
+
+var pushBookmark = function(tab, callback) {
+	ensureFolder(FOLDER_ID, function(folder) {
+		chrome.bookmarks.create({
+			parentId: folder.id,
+			title: tab.title,
+			url: tab.url,
+			// tab.favIconUrl
+		}, callback);
+	});
+};
