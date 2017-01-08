@@ -8,3 +8,5 @@ chrome.contextMenus.create({
 		});
 	},
 });
+
+updateCount();

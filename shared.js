@@ -23,10 +23,19 @@ var getBookmarks = function(callback) {
 	});
 };
 
+var updateCount = function(callback) {
+	getBookmarks(function(bookmarks) {
+		chrome.browserAction.setBadgeText({text: '' + bookmarks.length});
+		if (callback) callback();
+	});
+};
+
 var popBookmark = function(id, callback) {
 	chrome.bookmarks.get(id, function(items) {
 		chrome.bookmarks.remove(id, function() {
-			callback(items[0]);
+			updateCount(function() {
+				callback(items[0]);
+			});
 		});
 	});
 };
@@ -38,6 +47,8 @@ var pushBookmark = function(tab, callback) {
 			title: tab.title,
 			url: tab.url,
 			// tab.favIconUrl
-		}, callback);
+		}, function() {
+			updateCount(callback);
+		});
 	});
 };
