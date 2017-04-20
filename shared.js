@@ -1,24 +1,44 @@
 'use struct';
 
-const FOLDER_ID = '2';
 const FOLDER_TITLE = 'stack';
 
-var ensureFolder = function(parentId, callback) {
-	chrome.bookmarks.getChildren(parentId, function(children) {
-		var folder = children.find(child => child.title === FOLDER_TITLE);
-		if (!folder) {
-			chrome.bookmarks.create({
-				parentId: parentId,
-				title: FOLDER_TITLE,
-			}, callback);
+var getRootFolder = function(callback) {
+	// try firefox
+	chrome.bookmarks.get('unfiled_____', function(folder) {
+		if (!chrome.runtime.lastError) {
+			callback(folder[0]);
 		} else {
-			callback(folder);
+			// In chrome, it the folders are indexed depth-first.
+			// So root is 0, "bookmark bar" is 1, "other bookmarks" is 2.
+			// However, if you already had bookmarks when ids were introduced,
+			// "other bookmarks" may have a higher id.
+			//
+			// See https://bugs.chromium.org/p/chromium/issues/detail?id=21330
+			chrome.bookmarks.getChildren('0', function(children) {
+				callback(children[1]);
+			});
 		}
 	});
 };
 
+var ensureFolder = function(callback) {
+	getRootFolder(function(root) {
+		chrome.bookmarks.getChildren(root.id, function(children) {
+			var folder = children.find(child => child.title === FOLDER_TITLE);
+			if (!folder) {
+				chrome.bookmarks.create({
+					parentId: parentId,
+					title: FOLDER_TITLE,
+				}, callback);
+			} else {
+				callback(folder);
+			}
+		});
+	});
+};
+
 var getBookmarks = function(callback) {
-	ensureFolder(FOLDER_ID, function(folder) {
+	ensureFolder(function(folder) {
 		chrome.bookmarks.getChildren(folder.id, callback);
 	});
 };
@@ -41,7 +61,7 @@ var popBookmark = function(id, callback) {
 };
 
 var pushBookmark = function(tab, callback) {
-	ensureFolder(FOLDER_ID, function(folder) {
+	ensureFolder(function(folder) {
 		chrome.bookmarks.create({
 			parentId: folder.id,
 			title: tab.title,
