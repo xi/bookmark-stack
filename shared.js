@@ -46,7 +46,6 @@ var pushBookmark = function(tab, callback) {
 			parentId: folder.id,
 			title: tab.title,
 			url: tab.url,
-			// tab.favIconUrl
 		}, function() {
 			updateCount(callback);
 		});
