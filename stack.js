@@ -20,7 +20,7 @@ var render = function(element, items) {
 		// reverse
 		element.prepend(li);
 	});
-}
+};
 
 getBookmarks(function(bookmarks) {
 	render(document.querySelector('#bookmarks'), bookmarks);
@@ -30,7 +30,7 @@ document.addEventListener('click', function(event) {
 	if (event.target.tagName === 'A') {
 		event.preventDefault();
 		popBookmark(event.target.id, function(bookmark) {
-			chrome.tabs.create({url: bookmark.url})
+			chrome.tabs.create({url: bookmark.url});
 		});
 	}
 });
