@@ -6,7 +6,7 @@ var render = function(element, items) {
 		var icon = document.createElement('img');
 		icon.className = 'icon';
 
-		if (chrome && !browser) {
+		if (chrome && typeof browser === 'undefined') {
 			icon.src = 'chrome://favicon/' + item.url;
 		} else {
 			var rootUrl = item.url.split('/').slice(0, 3).join('/');
