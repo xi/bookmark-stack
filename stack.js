@@ -5,7 +5,13 @@ var render = function(element, items) {
 	items.forEach(function(item) {
 		var icon = document.createElement('img');
 		icon.className = 'icon';
-		icon.src = 'chrome://favicon/' + item.url;
+
+		if (chrome && !browser) {
+			icon.src = 'chrome://favicon/' + item.url;
+		} else {
+			var rootUrl = item.url.split('/').slice(0, 3).join('/');
+			icon.src = rootUrl + '/favicon.ico';
+		}
 
 		var a = document.createElement('a');
 		a.id = item.id;
