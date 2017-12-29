@@ -1,6 +1,5 @@
-bookmark stack - chrome extension to save bookmarks in a stack
+bookmark stack - web extension to save pages in a stack for reading them later
 
-Havily inspired by [view later][1] but much simpler. For example, a simple
-bookmarks folder is used for storage.
-
-[1]: https://chrome.google.com/webstore/detail/view-later-save-links-in/hnolaplfoobcmgfmjphkmbjolinelpkb?hl=en-US)
+This extension is havily inspired by [view later](https://chrome.google.com/webstore/detail/view-later-save-links-in/hnolaplfoobcmgfmjphkmbjolinelpkb?hl=en-US)
+and [reading-list](https://addons.mozilla.org/en-US/firefox/addon/reading_list/)
+but much simpler. For example, a simple bookmarks folder is used for storage.
