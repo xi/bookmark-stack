@@ -27,7 +27,7 @@ var ensureFolder = function(callback) {
 			var folder = children.find(child => child.title === FOLDER_TITLE);
 			if (!folder) {
 				chrome.bookmarks.create({
-					parentId: parentId,
+					parentId: root.id,
 					title: FOLDER_TITLE,
 				}, callback);
 			} else {
