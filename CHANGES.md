@@ -1,3 +1,9 @@
+1.0.3 (2018-09-12)
+------------------
+
+-	the fix from the previous release didn't work. So here is a better one.
+
+
 1.0.2 (2018-09-12)
 ------------------
 
