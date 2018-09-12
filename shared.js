@@ -60,7 +60,7 @@ var popBookmark = function(id, callback) {
 	});
 };
 
-var pushBookmark = function(tab, callback) {
+var _pushBookmark = function(tab, callback) {
 	ensureFolder(function(folder) {
 		chrome.bookmarks.create({
 			parentId: folder.id,
@@ -70,4 +70,16 @@ var pushBookmark = function(tab, callback) {
 			updateCount(callback);
 		});
 	});
+};
+
+var pushBookmark = function(tab, callback) {
+		if (tab.isInReaderMode) {
+			browser.tabs.toggleReaderMode(tab.id).then(function() {
+				browser.tabs.get(tab.id).then(function(refreshed) {
+					_pushBookmark(refreshed, callback);
+				});
+			});
+		} else {
+			_pushBookmark(tab, callback);
+		}
 };
