@@ -60,26 +60,20 @@ var popBookmark = function(id, callback) {
 	});
 };
 
-var _pushBookmark = function(tab, callback) {
+var pushBookmark = function(tab, callback) {
 	ensureFolder(function(folder) {
+		var url = tab.url;
+		if (tab.isInReaderMode) {
+			var _url = new URL(url);
+			var _search = new URLSearchParams(_url.search);
+			url = _search.get('url');
+		}
 		chrome.bookmarks.create({
 			parentId: folder.id,
 			title: tab.title,
-			url: tab.url,
+			url: url,
 		}, function() {
 			updateCount(callback);
 		});
 	});
-};
-
-var pushBookmark = function(tab, callback) {
-		if (tab.isInReaderMode) {
-			browser.tabs.toggleReaderMode(tab.id).then(function() {
-				browser.tabs.get(tab.id).then(function(refreshed) {
-					_pushBookmark(refreshed, callback);
-				});
-			});
-		} else {
-			_pushBookmark(tab, callback);
-		}
 };
