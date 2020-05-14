@@ -1,4 +1,11 @@
+1.0.5 (2020-05-14)
+------------------
+
+-	show context menu item in more contexts
+
+
 1.0.4 (2018-12-06)
+------------------
 
 -	show message on empty stack
 
