@@ -2,7 +2,7 @@
 
 chrome.contextMenus.create({
 	title: 'read later',
-	contexts: ['page'],
+	contexts: ['page', 'selection', 'editable', 'image', 'tab'],
 	onclick: function(info, tab) {
 		pushBookmark(tab, function() {
 			chrome.tabs.remove(tab.id);
