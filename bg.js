@@ -1,21 +1,27 @@
-chrome.contextMenus.create({
-	title: 'read later',
-	contexts: ['page', 'selection', 'editable', 'image', 'tab'],
-	onclick: function(info, tab) {
-		pushBookmark(tab, function() {
-			chrome.tabs.remove(tab.id);
-		});
-	},
+ chrome.runtime.onInstalled.addListener(function() {
+	chrome.contextMenus.create({
+		id: 'read-later',
+		title: 'read later',
+		contexts: ['page', 'selection', 'editable', 'image', 'tab'],
+	});
+
+	chrome.contextMenus.create({
+		id: 'read-later-link',
+		title: 'read link later',
+		contexts: ['link'],
+	});
 });
 
-chrome.contextMenus.create({
-	title: 'read link later',
-	contexts: ['link'],
-	onclick: function(info) {
+chrome.contextMenus.onClicked.addListener(function(info, tab) {
+	if (info.menuItemId === 'read-later-link') {
 		pushBookmark({
 			url: info.linkUrl,
 		});
-	},
+	} else {
+		pushBookmark(tab, function() {
+			chrome.tabs.remove(tab.id);
+		});
+	}
 });
 
 updateCount();
