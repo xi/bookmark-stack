@@ -1,5 +1,3 @@
-'use struct';
-
 chrome.contextMenus.create({
 	title: 'read later',
 	contexts: ['page', 'selection', 'editable', 'image', 'tab'],

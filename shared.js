@@ -1,5 +1,3 @@
-'use struct';
-
 const FOLDER_TITLE = 'stack';
 
 var getRootFolder = function(callback) {
