@@ -10,6 +10,7 @@ var render = function(element, items) {
 			if (chrome && typeof browser === 'undefined') {
 				icon.src = 'chrome://favicon/' + item.url;
 			} else {
+				// see https://bugzilla.mozilla.org/show_bug.cgi?id=1315616
 				var rootUrl = item.url.split('/').slice(0, 3).join('/');
 				icon.src = rootUrl + '/favicon.ico';
 			}
