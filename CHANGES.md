@@ -1,3 +1,10 @@
+1.1.1 (2022-10-15)
+------------------
+
+-	make compatible with event pages
+-	add author and homepage to manifest
+
+
 1.1.0 (2020-12-19)
 ------------------
 
