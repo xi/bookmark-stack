@@ -1,52 +1,58 @@
-<meta charset="utf-8" />
-<style>
-body {
-	font-size: 90%;
-}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<style>
+		body {
+			font-size: 90%;
+		}
 
-#bookmarks {
-	margin: 0;
-	padding: 0;
-	list-style: none;
+		#bookmarks {
+			margin: 0;
+			padding: 0;
+			list-style: none;
 
-	line-height: 2;
-}
+			line-height: 2;
+		}
 
-a {
-	color: inherit;
-	text-decoration: none;
+		a {
+			color: inherit;
+			text-decoration: none;
 
-	display: block;
-	padding: 0 0.2em;
+			display: block;
+			padding: 0 0.2em;
 
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	overflow: hidden;
-}
-a:hover,
-a:focus {
-	background: #eef;
-}
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			overflow: hidden;
+		}
+		a:hover,
+		a:focus {
+			background: #eef;
+		}
 
-.icon {
-	vertical-align: middle;
-	margin-right: 0.5em;
-	width: 16px;
-}
+		.icon {
+			vertical-align: middle;
+			margin-right: 0.5em;
+			width: 16px;
+		}
 
-@media (prefers-color-scheme: dark) {
-	html {
-		background: black;
-		color: white;
-	}
-	a:hover,
-	a:focus {
-		background: #333;
-	}
-}
-</style>
+		@media (prefers-color-scheme: dark) {
+			html {
+				background: black;
+				color: white;
+			}
+			a:hover,
+			a:focus {
+				background: #333;
+			}
+		}
+	</style>
+</head>
+<body>
+	<ul id="bookmarks"></ul>
 
-<ul id="bookmarks"></ul>
-
-<script src="shared.js"></script>
-<script src="stack.js"></script>
+	<script src="shared.js"></script>
+	<script src="stack.js"></script>
+</body>
+</html>
