@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <clipPath id="half-circles">
+    <rect x="0" y="0" width="32" height="128" />
+  </clipPath>
+  <rect fill="#6B6B6B" x="0" y="0" width="128" height="128" rx="16" ry="16" />
+  <g>
+    <g fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round">
+      <line x1="32" y1="21" x2="107" y2="21" />
+      <line x1="32" y1="45" x2="107" y2="45" />
+      <line x1="32" y1="69" x2="107" y2="69" />
+      <line x1="32" y1="93" x2="107" y2="93" />
+      <line x1="99" y1="21" x2="99" y2="93" />
+      <circle cx="32" cy="33" r="12" clip-path="url(#half-circles)" />
+      <circle cx="32" cy="57" r="12" clip-path="url(#half-circles)" />
+      <circle cx="32" cy="81" r="12" clip-path="url(#half-circles)" />
+    </g>
+    <g fill="#fff">
+      <rect x="32" y="78" width="24" height="16" rx="3" ry="3" />
+      <polygon points="32,93 32,112 44,102 56,112 56,93" />
+    </g>
+  </g>
+</svg>
