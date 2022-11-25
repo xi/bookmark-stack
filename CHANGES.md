@@ -1,3 +1,10 @@
+1.1.2 (2022-11-25)
+------------------
+
+-	partly revert event page compatibility due to issues
+-	add explicit extension ID to manifest
+
+
 1.1.1 (2022-10-15)
 ------------------
 
