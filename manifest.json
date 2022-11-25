@@ -31,5 +31,10 @@
     "tabs",
     "contextMenus",
     "chrome://favicon/"
-  ]
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "{4184dc66-ea2a-490f-8f02-21731ee99742}"
+    }
+  }
 }
