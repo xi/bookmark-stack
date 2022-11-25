@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Bookmark Stack",
   "author": "Tobias Bengfort",
-  "homepage_url": "https://github.com/xi/xiMatrix",
+  "homepage_url": "https://github.com/xi/bookmark-stack",
   "description": "inspired by view later",
   "version": "1.1.2",
   "browser_action": {
