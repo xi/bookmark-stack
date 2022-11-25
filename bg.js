@@ -1,15 +1,13 @@
- chrome.runtime.onInstalled.addListener(function() {
-	chrome.contextMenus.create({
-		id: 'read-later',
-		title: 'read later',
-		contexts: ['page', 'selection', 'editable', 'image', 'tab'],
-	});
+chrome.contextMenus.create({
+	id: 'read-later',
+	title: 'read later',
+	contexts: ['page', 'selection', 'editable', 'image', 'tab'],
+});
 
-	chrome.contextMenus.create({
-		id: 'read-later-link',
-		title: 'read link later',
-		contexts: ['link'],
-	});
+chrome.contextMenus.create({
+	id: 'read-later-link',
+	title: 'read link later',
+	contexts: ['link'],
 });
 
 chrome.contextMenus.onClicked.addListener(function(info, tab) {
