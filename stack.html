@@ -28,7 +28,7 @@
 		}
 		a:hover,
 		a:focus {
-			background: #eef;
+			background: rgba(0,0,0,0.1);
 		}
 
 		.icon {
@@ -38,13 +38,12 @@
 		}
 
 		@media (prefers-color-scheme: dark) {
-			html {
-				background: black;
-				color: white;
+			:root {
+				color-scheme: dark;
 			}
 			a:hover,
 			a:focus {
-				background: #333;
+				background: rgba(255,255,255,0.2);
 			}
 		}
 	</style>
