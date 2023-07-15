@@ -14,6 +14,7 @@ chrome.contextMenus.onClicked.addListener(function(info, tab) {
 	if (info.menuItemId === 'read-later-link') {
 		pushBookmark({
 			url: info.linkUrl,
+			title: info.linkText,
 		});
 	} else {
 		pushBookmark(tab, function() {
