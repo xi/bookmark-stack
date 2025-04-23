@@ -1,3 +1,12 @@
+2.0.0 (2025-04-23)
+------------------
+
+-	update to manifest v3
+-	use browser default colors in dark mode
+-	use link text as title when using "read link later"
+-	change badge color to grey on empty stack
+
+
 1.1.2 (2022-11-25)
 ------------------
 
