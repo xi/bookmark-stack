@@ -43,7 +43,7 @@ var getBookmarks = function(callback) {
 
 var updateCount = function(callback) {
 	getBookmarks(function(bookmarks) {
-		chrome.browserAction.setBadgeText({text: '' + bookmarks.length});
+		chrome.action.setBadgeText({text: '' + bookmarks.length});
 		if (callback) callback();
 	});
 };
