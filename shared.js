@@ -39,6 +39,9 @@ var getBookmarks = async function() {
 var updateCount = async function() {
 	var bookmarks = await getBookmarks();
 	chrome.action.setBadgeText({text: '' + bookmarks.length});
+	chrome.action.setBadgeBackgroundColor({
+		color: bookmarks.length === 0 ? '#6b6b6b' : null
+	});
 };
 
 var popBookmark = async function(id) {
