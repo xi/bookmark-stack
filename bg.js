@@ -10,16 +10,15 @@ chrome.contextMenus.create({
 	contexts: ['link'],
 });
 
-chrome.contextMenus.onClicked.addListener(function(info, tab) {
+chrome.contextMenus.onClicked.addListener(async function(info, tab) {
 	if (info.menuItemId === 'read-later-link') {
-		pushBookmark({
+		await pushBookmark({
 			url: info.linkUrl,
 			title: info.linkText,
 		});
 	} else {
-		pushBookmark(tab, function() {
-			chrome.tabs.remove(tab.id);
-		});
+		await pushBookmark(tab);
+		await chrome.tabs.remove(tab.id);
 	}
 });
 

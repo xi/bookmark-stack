@@ -1,77 +1,65 @@
 const FOLDER_TITLE = 'stack';
 
-var getRootFolder = function(callback) {
+var getRootFolder = async function() {
 	// try firefox
-	chrome.bookmarks.get('unfiled_____', function(folder) {
-		if (!chrome.runtime.lastError) {
-			callback(folder[0]);
-		} else {
-			// In chrome, it the folders are indexed depth-first.
-			// So root is 0, "bookmark bar" is 1, "other bookmarks" is 2.
-			// However, if you already had bookmarks when ids were introduced,
-			// "other bookmarks" may have a higher id.
-			//
-			// See https://bugs.chromium.org/p/chromium/issues/detail?id=21330
-			chrome.bookmarks.getChildren('0', function(children) {
-				callback(children[1]);
-			});
-		}
-	});
+	var folder = await chrome.bookmarks.get('unfiled_____');
+	if (!chrome.runtime.lastError) {
+		return folder[0];
+	} else {
+		// In chrome, it the folders are indexed depth-first.
+		// So root is 0, "bookmark bar" is 1, "other bookmarks" is 2.
+		// However, if you already had bookmarks when ids were introduced,
+		// "other bookmarks" may have a higher id.
+		//
+		// See https://bugs.chromium.org/p/chromium/issues/detail?id=21330
+		var children = await chrome.bookmarks.getChildren('0');
+		return children[1];
+	}
 };
 
-var ensureFolder = function(callback) {
-	getRootFolder(function(root) {
-		chrome.bookmarks.getChildren(root.id, function(children) {
-			var folder = children.find(child => child.title === FOLDER_TITLE);
-			if (!folder) {
-				chrome.bookmarks.create({
-					parentId: root.id,
-					title: FOLDER_TITLE,
-				}, callback);
-			} else {
-				callback(folder);
-			}
+var ensureFolder = async function() {
+	var root = await getRootFolder();
+	var children = await chrome.bookmarks.getChildren(root.id);
+	var folder = children.find(child => child.title === FOLDER_TITLE);
+	if (!folder) {
+		return await chrome.bookmarks.create({
+			parentId: root.id,
+			title: FOLDER_TITLE,
 		});
-	});
+	} else {
+		return folder;
+	}
 };
 
-var getBookmarks = function(callback) {
-	ensureFolder(function(folder) {
-		chrome.bookmarks.getChildren(folder.id, callback);
-	});
+var getBookmarks = async function() {
+	var folder = await ensureFolder();
+	return await chrome.bookmarks.getChildren(folder.id);
 };
 
-var updateCount = function(callback) {
-	getBookmarks(function(bookmarks) {
-		chrome.action.setBadgeText({text: '' + bookmarks.length});
-		if (callback) callback();
-	});
+var updateCount = async function() {
+	var bookmarks = await getBookmarks();
+	chrome.action.setBadgeText({text: '' + bookmarks.length});
 };
 
-var popBookmark = function(id, callback) {
-	chrome.bookmarks.get(id, function(items) {
-		chrome.bookmarks.remove(id, function() {
-			updateCount(function() {
-				callback(items[0]);
-			});
-		});
-	});
+var popBookmark = async function(id) {
+	var items = await chrome.bookmarks.get(id);
+	await chrome.bookmarks.remove(id);
+	await updateCount();
+	return items[0];
 };
 
-var pushBookmark = function(tab, callback) {
-	ensureFolder(function(folder) {
-		var url = tab.url;
-		if (tab.isInReaderMode) {
-			var _url = new URL(url);
-			var _search = new URLSearchParams(_url.search);
-			url = _search.get('url');
-		}
-		chrome.bookmarks.create({
-			parentId: folder.id,
-			title: tab.title,
-			url: url,
-		}, function() {
-			updateCount(callback);
-		});
+var pushBookmark = async function(tab) {
+	var folder = await ensureFolder();
+	var url = tab.url;
+	if (tab.isInReaderMode) {
+		var _url = new URL(url);
+		var _search = new URLSearchParams(_url.search);
+		url = _search.get('url');
+	}
+	await chrome.bookmarks.create({
+		parentId: folder.id,
+		title: tab.title,
+		url: url,
 	});
+	await updateCount();
 };

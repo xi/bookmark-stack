@@ -3,7 +3,7 @@ var render = function(element, items) {
 		element.outerHTML = '<p>No links stored yet.</p>'
 	} else {
 		element.innerHTML = '';
-		items.forEach(function(item) {
+		items.forEach(item => {
 			var icon = document.createElement('img');
 			icon.className = 'icon';
 
@@ -31,14 +31,14 @@ var render = function(element, items) {
 	}
 };
 
-getBookmarks(function(bookmarks) {
+getBookmarks().then(bookmarks => {
 	render(document.querySelector('#bookmarks'), bookmarks);
 });
 
-document.addEventListener('click', function(event) {
+document.addEventListener('click', event => {
 	if (event.target.tagName === 'A') {
 		event.preventDefault();
-		popBookmark(event.target.id, function(bookmark) {
+		popBookmark(event.target.id).then(bookmark => {
 			chrome.tabs.create({url: bookmark.url});
 		});
 	}
