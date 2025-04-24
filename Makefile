@@ -1,4 +1,4 @@
-bookmark-stack.zip: bg.js icons/icon-16.png icons/icon-48.png icons/icon-128.png manifest.json shared.js stack.js stack.html
+bookmark-stack.zip: manifest.json src icons/icon-16.png icons/icon-48.png icons/icon-128.png
 	zip -r -FS $@ $^
 
 icons/icon-16.png: icons/icon.svg
