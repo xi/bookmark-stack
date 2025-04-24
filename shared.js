@@ -7,7 +7,7 @@ var getRootFolder = async function() {
 		var folder = await chrome.bookmarks.get('unfiled_____');
 		return folder[0];
 	} catch {
-		// In chrome, it the folders are indexed depth-first.
+		// In chrome, the folders are indexed depth-first.
 		// So root is 0, "bookmark bar" is 1, "other bookmarks" is 2.
 		// However, if you already had bookmarks when ids were introduced,
 		// "other bookmarks" may have a higher id.
