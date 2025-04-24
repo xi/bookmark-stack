@@ -2,24 +2,26 @@
 
 import { pushBookmark, updateCount } from './shared.js';
 
-chrome.contextMenus.create({
-	id: 'read-later',
-	title: 'read later',
-	contexts: ['page', 'selection', 'editable', 'image'],
-});
-
-try {
+chrome.runtime.onInstalled.addListener(() => {
 	chrome.contextMenus.create({
 		id: 'read-later',
 		title: 'read later',
-		contexts: ['tab'],
+		contexts: ['page', 'selection', 'editable', 'image'],
 	});
-} catch {}
 
-chrome.contextMenus.create({
-	id: 'read-later-link',
-	title: 'read link later',
-	contexts: ['link'],
+	try {
+		chrome.contextMenus.create({
+			id: 'read-later',
+			title: 'read later',
+			contexts: ['tab'],
+		});
+	} catch {}
+
+	chrome.contextMenus.create({
+		id: 'read-later-link',
+		title: 'read link later',
+		contexts: ['link'],
+	});
 });
 
 chrome.contextMenus.onClicked.addListener(async function(info, tab) {
