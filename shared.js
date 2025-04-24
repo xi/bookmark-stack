@@ -3,11 +3,10 @@
 const FOLDER_TITLE = 'stack';
 
 var getRootFolder = async function() {
-	// try firefox
-	var folder = await chrome.bookmarks.get('unfiled_____');
-	if (!chrome.runtime.lastError) {
+	try {
+		var folder = await chrome.bookmarks.get('unfiled_____');
 		return folder[0];
-	} else {
+	} catch {
 		// In chrome, it the folders are indexed depth-first.
 		// So root is 0, "bookmark bar" is 1, "other bookmarks" is 2.
 		// However, if you already had bookmarks when ids were introduced,
