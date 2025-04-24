@@ -15,10 +15,8 @@
     "128": "icons/icon-128.png"
   },
   "background": {
-    "scripts": [
-      "shared.js",
-      "bg.js"
-    ]
+    "scripts": ["bg.js"],
+    "type": "module"
   },
   "permissions": [
     "bookmarks",

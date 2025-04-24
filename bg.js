@@ -1,3 +1,5 @@
+import { pushBookmark, updateCount } from './shared.js';
+
 chrome.contextMenus.create({
 	id: 'read-later',
 	title: 'read later',

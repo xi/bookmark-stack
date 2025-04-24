@@ -31,12 +31,12 @@ var ensureFolder = async function() {
 	}
 };
 
-var getBookmarks = async function() {
+export var getBookmarks = async function() {
 	var folder = await ensureFolder();
 	return await chrome.bookmarks.getChildren(folder.id);
 };
 
-var updateCount = async function() {
+export var updateCount = async function() {
 	var bookmarks = await getBookmarks();
 	chrome.action.setBadgeText({text: '' + bookmarks.length});
 	chrome.action.setBadgeBackgroundColor({
@@ -44,14 +44,14 @@ var updateCount = async function() {
 	});
 };
 
-var popBookmark = async function(id) {
+export var popBookmark = async function(id) {
 	var items = await chrome.bookmarks.get(id);
 	await chrome.bookmarks.remove(id);
 	await updateCount();
 	return items[0];
 };
 
-var pushBookmark = async function(tab) {
+export var pushBookmark = async function(tab) {
 	var folder = await ensureFolder();
 	var url = tab.url;
 	if (tab.isInReaderMode) {

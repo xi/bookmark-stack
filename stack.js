@@ -1,3 +1,5 @@
+import { getBookmarks, popBookmark } from './shared.js';
+
 var render = function(element, items) {
 	if (items.length === 0) {
 		element.outerHTML = '<p>No links stored yet.</p>'
