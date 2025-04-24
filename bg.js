@@ -5,8 +5,16 @@ import { pushBookmark, updateCount } from './shared.js';
 chrome.contextMenus.create({
 	id: 'read-later',
 	title: 'read later',
-	contexts: ['page', 'selection', 'editable', 'image', 'tab'],
+	contexts: ['page', 'selection', 'editable', 'image'],
 });
+
+try {
+	chrome.contextMenus.create({
+		id: 'read-later',
+		title: 'read later',
+		contexts: ['tab'],
+	});
+} catch {}
 
 chrome.contextMenus.create({
 	id: 'read-later-link',
