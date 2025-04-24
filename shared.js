@@ -39,10 +39,14 @@ export var getBookmarks = async function() {
 
 export var updateCount = async function() {
 	var bookmarks = await getBookmarks();
-	chrome.action.setBadgeText({text: '' + bookmarks.length});
-	chrome.action.setBadgeBackgroundColor({
-		color: bookmarks.length === 0 ? '#6b6b6b' : null
-	});
+	await chrome.action.setBadgeText({text: '' + bookmarks.length});
+	try {
+		// chrome does not support resetting the color, so we check for that first
+		await chrome.action.setBadgeBackgroundColor({color: null});
+		if (bookmarks.length === 0) {
+			await chrome.action.setBadgeBackgroundColor({color: '#6b6b6b'});
+		}
+	} catch {}
 };
 
 export var popBookmark = async function(id) {
