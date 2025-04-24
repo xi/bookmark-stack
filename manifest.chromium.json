@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "Bookmark Stack",
+  "author": "Tobias Bengfort",
+  "homepage_url": "https://github.com/xi/bookmark-stack",
+  "description": "inspired by view later",
+  "version": "2.0.0",
+  "action": {
+    "default_title": "Bookmark Stack",
+    "default_popup": "stack.html"
+  },
+  "icons": {
+    "16": "icons/icon-16.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "background": {
+    "service_worker": "bg.js",
+    "type": "module"
+  },
+  "permissions": [
+    "bookmarks",
+    "tabs",
+    "contextMenus",
+    "favicon"
+  ]
+}
