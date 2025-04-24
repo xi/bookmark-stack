@@ -36,4 +36,11 @@ chrome.contextMenus.onClicked.addListener(async function(info, tab) {
 	}
 });
 
+chrome.commands.onCommand.addListener(async function(name, tab) {
+	if (name === 'push-bookmark') {
+		await pushBookmark(tab);
+		await chrome.tabs.remove(tab.id);
+	}
+});
+
 updateCount();

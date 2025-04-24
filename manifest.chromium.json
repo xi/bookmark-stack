@@ -23,5 +23,10 @@
     "tabs",
     "contextMenus",
     "favicon"
-  ]
+  ],
+  "commands": {
+    "push-bookmark": {
+      "description": "push the current tab to the stack"
+    }
+  }
 }
