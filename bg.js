@@ -1,3 +1,5 @@
+/* global chrome */
+
 import { pushBookmark, updateCount } from './shared.js';
 
 chrome.contextMenus.create({

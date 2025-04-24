@@ -1,8 +1,10 @@
+/* global chrome */
+
 import { getBookmarks, popBookmark } from './shared.js';
 
 var render = function(element, items) {
 	if (items.length === 0) {
-		element.outerHTML = '<p>No links stored yet.</p>'
+		element.outerHTML = '<p>No links stored yet.</p>';
 	} else {
 		element.innerHTML = '';
 		items.forEach(item => {

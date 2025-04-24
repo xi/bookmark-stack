@@ -1,3 +1,5 @@
+/* global chrome */
+
 const FOLDER_TITLE = 'stack';
 
 var getRootFolder = async function() {
