@@ -11,11 +11,14 @@ var render = function(element, items) {
 			var icon = document.createElement('img');
 			icon.className = 'icon';
 
+			var rootUrl = item.url.split('/').slice(0, 3).join('/');
 			if (chrome && typeof browser === 'undefined') {
-				icon.src = 'chrome://favicon/' + item.url;
+				var url = new URL(chrome.runtime.getURL('/_favicon/'));
+				url.searchParams.set('pageUrl', rootUrl);
+				url.searchParams.set('size', '16');
+				icon.src = url.toString();
 			} else {
 				// see https://bugzilla.mozilla.org/show_bug.cgi?id=1315616
-				var rootUrl = item.url.split('/').slice(0, 3).join('/');
 				icon.src = rootUrl + '/favicon.ico';
 			}
 
