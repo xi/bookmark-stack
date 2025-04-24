@@ -1,3 +1,11 @@
+2.1.0 (2025-04-24)
+------------------
+
+-	add optional keyboard shortcut
+-	fix chrome compatibility
+-	fix tab crashes caused by the manifest v3 migration
+
+
 2.0.0 (2025-04-23)
 ------------------
 

@@ -4,7 +4,7 @@
   "author": "Tobias Bengfort",
   "homepage_url": "https://github.com/xi/bookmark-stack",
   "description": "inspired by view later",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "action": {
     "default_title": "Bookmark Stack",
     "default_popup": "src/stack.html"
