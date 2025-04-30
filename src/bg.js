@@ -22,6 +22,12 @@ chrome.runtime.onInstalled.addListener(() => {
 		title: 'read link later',
 		contexts: ['link'],
 	});
+
+	updateCount();
+});
+
+chrome.runtime.onStartup.addListener(() => {
+	updateCount();
 });
 
 chrome.contextMenus.onClicked.addListener(async function(info, tab) {
@@ -42,5 +48,3 @@ chrome.commands.onCommand.addListener(async function(name, tab) {
 		await chrome.tabs.remove(tab.id);
 	}
 });
-
-updateCount();
