@@ -6,7 +6,7 @@ chrome.runtime.onInstalled.addListener(() => {
 	chrome.contextMenus.create({
 		id: 'read-later',
 		title: 'read later',
-		contexts: ['page', 'selection', 'editable', 'image'],
+		contexts: ['page', 'selection', 'editable', 'image', 'video'],
 	});
 
 	try {
