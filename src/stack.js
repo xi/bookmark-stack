@@ -10,6 +10,7 @@ var render = function(element, items) {
 		items.forEach(item => {
 			var icon = document.createElement('img');
 			icon.className = 'icon';
+			icon.alt = '';
 
 			var rootUrl = item.url.split('/').slice(0, 3).join('/');
 			if (chrome && typeof browser === 'undefined') {
