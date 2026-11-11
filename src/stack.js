@@ -44,9 +44,10 @@ getBookmarks().then(bookmarks => {
 });
 
 document.addEventListener('click', event => {
-	if (event.target.tagName === 'A') {
+	var link = event.target.closest('a');
+	if (link) {
 		event.preventDefault();
-		popBookmark(event.target.id).then(bookmark => {
+		popBookmark(link.id).then(bookmark => {
 			chrome.tabs.create({url: bookmark.url});
 		});
 	}
